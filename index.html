@@ -3,71 +3,71 @@
 <head>
   <title>Lemon Bake</title>
   <style>
+  <style>
+    html { scroll-behavior: smooth; }
     body { 
-body { 
-    margin: 0; 
-    background: #FFF8E1; /* amarillo clarito liso */
-    font-family: 'Arial'; 
-    overflow-x: hidden; 
-    color: #3E2723;
-}
-
-.section-quienes, .section-ingredientes { 
-    background: #FFF8E1; /* mismo amarillo */
-    padding: 60px 40px; /* bajamos el espacio */
-    position: relative; 
-    overflow: hidden; 
-}
-
-.barra-rosa, .barra-rosa-izq { 
-    position: absolute; 
-    top: 0; 
-    right: 0; 
-    width: 60px; 
-    height: 100%; 
-    max-height: 500px; /* <-- ESTA ES LA CLAVE para que no sea gigante */
-    background: #8B5A2B; /* marrón */
-    z-index: 0; 
-}
-.barra-rosa-izq { left: 0; right: auto; }
+        margin: 0; 
+        background: #FDF1EC; /* volvimos al beige/rosita */
+        font-family: 'Arial'; 
+        overflow-x: hidden; 
+        color: #3E2723;
+    }
+    
     .navbar { 
-        background: #8B5A2B; 
+        background: white; 
         padding: 15px 40px; 
         margin: 20px; 
         border-radius: 20px; 
-        box-shadow: 0 5px 20px rgba(0,0,0,0.2); 
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
         display: flex; 
         justify-content: space-between; 
         align-items: center; 
     }
     .navbar img.logo { max-width: 150px; }
-    .navbar .menu a { text-decoration: none; color: #FFF3A0; margin: 0 10px; font-weight: 500; }
-    .navbar .menu a:hover { color: white; }
+    .navbar .menu a { text-decoration: none; color: #555; margin: 0 10px; font-weight: 500; }
     
     .btn-instagram { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4); padding: 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; }
     .btn-instagram svg { width: 24px; height: 24px; fill: white; }
     
     .hero { display: flex; align-items: center; justify-content: space-around; padding: 60px 40px; flex-wrap: wrap; min-height: 80vh; }
     .hero-text { text-align: left; max-width: 500px; }
-    .hero-text h1 { font-size: 48px; color: #5D4037; margin: 0; line-height: 1.2; } /* marrón oscuro */
-    .hero-text .descripcion { font-size: 16px; color: #3E2723; margin: 20px 0; line-height: 1.6; }
-    
-    .btn-whatsapp { background: #FFD700; color: #3E2723; padding: 16px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; display: inline-flex; align-items: center; gap: 12px; }
-    .btn-whatsapp:hover { background: #FFC107; }
-    
-    .hero-img img { width: 400px; max-width: 90%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .hero-text h1 { font-size: 48px; color: #A0522D; margin: 0; line-height: 1.2; }
+    .hero-text .descripcion { font-size: 16px; color: #6D4C41; margin: 20px 0; line-height: 1.6; }
+    .btn-whatsapp { background: #25D366; color: white; padding: 16px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; display: inline-flex; align-items: center; gap: 12px; }
+    .hero-img img { width: 400px; max-width: 90%; border-radius: 20px; }
     
     .section-quienes, .section-ingredientes { 
-        background: rgba(255, 248, 225, 0.9); /* amarillo clarito transparente */
-        padding: 100px 40px; 
+        background: #FDF1EC; 
+        padding: 60px 40px; /* bajé de 100px a 60px para que no sea tan larga */
         position: relative; 
         overflow: hidden; 
     }
     
-    .barra-rosa { position: absolute; top: 0; right: 0; width: 60px; height: 100%; background: #8B5A2B; z-index: 0; } /* ahora marrón */
-    .barra-rosa-izq { position: absolute; top: 0; left: 0; width: 60px; height: 100%; background: #8B5A2B; z-index: 0; } /* ahora marrón */
+    .barra-rosa { 
+        position: absolute; 
+        top: 0; 
+        right: 0; 
+        width: 60px; 
+        height: 100%; 
+        max-height: 500px; /* <-- esto evita que se haga gigante */
+        background: #E8B4C3; 
+        z-index: 0; 
+    }
+    .barra-rosa-izq { 
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        width: 60px; 
+        height: 100%; 
+        max-height: 500px; /* <-- esto también */
+        background: #E8B4C3; 
+        z-index: 0; 
+    }
     
-    .rama-izq, .rama-der, .rama-ing-izq, .rama-ing-der { stroke: #FFD700 !important; } /* ramas amarillas */
+    .rama-izq { position: absolute; top: 100px; left: 20px; width: 90px; opacity: 0.5; z-index: 0; }
+    .rama-der { position: absolute; bottom: 80px; right: 80px; width: 90px; opacity: 0.5; transform: rotate(180deg); z-index: 0; }
+    .rama-ing-izq { position: absolute; bottom: 120px; left: 30px; width: 90px; opacity: 0.5; z-index: 0; transform: rotate(90deg); }
+    .rama-ing-der { position: absolute; top: 100px; right: 100px; width: 90px; opacity: 0.5; z-index: 0; transform: rotate(-90deg); }
     
     .container, .container-ing { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; }
     .quienes-img, .ingredientes-img { opacity: 0; transition: all 2s ease-out; width: 400px; max-width: 90%; }
@@ -80,33 +80,30 @@ body {
     .ingredientes-text { transform: translateX(-120px); }
     .quienes-text.show, .ingredientes-text.show { opacity: 1; transform: translateX(0); }
     
-    h2 { color: #5D4037; font-size: 40px; font-weight: bold; letter-spacing: 4px; margin: 0 0 30px 0; text-align: center; width: 100%; } /* marrón */
-    .textos { color: #3E2723; font-size: 17px; line-height: 1.9; text-align: center; width: 100%; }
+    h2 { color: #8B2F48; font-size: 40px; font-weight: bold; letter-spacing: 4px; margin: 0 0 30px 0; text-align: center; width: 100%; }
+    .textos { color: #8B2F48; font-size: 17px; line-height: 1.9; text-align: center; width: 100%; }
     .textos p { margin: 0 0 20px 0; }
-    .textos b { color: #8B5A2B; } /* marrón medio */
+    .textos b { color: #B76E79; }
     
-    .footer { background: #3E2723; color: #FFF3A0; padding: 60px 40px 30px; text-align: center; } /* marrón muy oscuro */
+    .footer { background: #1A1A1A; color: white; padding: 60px 40px 30px; text-align: center; }
     .footer-links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; text-align: left; max-width: 300px; margin: 0 auto 40px; }
-    .footer-links a { color: #FFF3A0; text-decoration: none; font-size: 15px; transition: color 0.3s; }
-    .footer-links a:hover { color: #FFD700; }
-    .footer-rrss h3 { font-size: 18px; letter-spacing: 2px; margin-bottom: 15px; color: #FFD700; }
-    .footer-rrss p { color: #FFF3A0; font-size: 14px; max-width: 400px; margin: 0 auto 25px; line-height: 1.6; }
+    .footer-links a { color: #CCCCCC; text-decoration: none; font-size: 15px; transition: color 0.3s; }
+    .footer-links a:hover { color: #E8B4C3; }
+    .footer-rrss h3 { font-size: 18px; letter-spacing: 2px; margin-bottom: 15px; }
+    .footer-rrss p { color: #AAAAAA; font-size: 14px; max-width: 400px; margin: 0 auto 25px; line-height: 1.6; }
     .social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
-    .social-icons a { width: 40px; height: 40px; border: 1px solid #8B5A2B; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #FFD700; text-decoration: none; transition: all 0.3s; }
-    .social-icons a:hover { background: #FFD700; color: #3E2723; border-color: #FFD700; }
+    .social-icons a { width: 40px; height: 40px; border: 1px solid #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; }
+    .social-icons a:hover { background: #E8B4C3; border-color: #E8B4C3; }
     .social-icons svg { width: 18px; height: 18px; fill: currentColor; }
     .footer-logo { margin: 40px 0; }
     .footer-logo img { max-width: 200px; }
-    .footer-contacto { color: #FFF3A0; font-size: 15px; margin: 20px 0; }
+    .footer-contacto { color: #CCCCCC; font-size: 15px; margin: 20px 0; }
     .footer-contacto div { margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .footer-contacto svg { width: 18px; height: 18px; fill: #FFD700; }
-    .footer-copy { color: #A1887F; font-size: 13px; margin-top: 30px; border-top: 1px solid #5D4037; padding-top: 20px; }
+    .footer-contacto svg { width: 18px; height: 18px; fill: #E8B4C3; }
+    .footer-copy { color: #777; font-size: 13px; margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
     
     @media (max-width: 768px) { .rama-izq, .rama-der, .rama-ing-izq, .rama-ing-der { display: none; } .container, .container-ing { flex-direction: column; } h2 { font-size: 32px; } }
 </style>
-  </style>
-</head>
-<body>
 
   <div class="navbar">
     <img src="logo 1.jpeg" alt="Lemon Bake Logo" class="logo"> <!-- SIN ESPACIOS -->
