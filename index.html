@@ -37,34 +37,33 @@
     .btn-whatsapp:hover { background: #FFC107; }
     .hero-img img { width: 400px; max-width: 90%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
     
-    .section-quienes, .section-ingredientes { 
-        background: #FFF8E1; 
-        padding: 60px 40px; /* bajé el padding */
-        position: relative; 
-        overflow: hidden; 
-    }
-    
-    .barra-rosa { 
-        position: absolute; 
-        top: 0; 
-        right: 0; 
-        width: 60px; 
-        height: 100%; 
-        max-height: 500px; /* para que no sea gigante */
-        background: #8B5A2B; /* ahora marrón */
-        z-index: 0; 
-    }
-    .barra-rosa-izq { 
-        position: absolute; 
-        top: 0; 
-        left: 0; 
-        width: 60px; 
-        height: 100%; 
-        max-height: 500px; 
-        background: #8B5A2B; /* ahora marrón */
-        z-index: 0; 
-    }
-    
+   .section-quienes, .section-ingredientes { 
+    background: #FFF8E1; 
+    padding: 60px 40px;
+    position: relative; 
+    overflow: hidden; 
+}
+
+.barra-rosa { 
+    position: absolute; 
+    top: 60px; /* empieza donde empieza el padding */
+    right: 0; 
+    width: 60px; 
+    height: calc(100% - 120px); /* 100% menos el padding de arriba y abajo */
+    background: #8B5A2B; /* marrón */
+    z-index: 0; 
+    border-radius: 0 0 0 20px; /* esquinas redondeadas */
+}
+.barra-rosa-izq { 
+    position: absolute; 
+    top: 60px;
+    left: 0; 
+    width: 60px; 
+    height: calc(100% - 120px);
+    background: #8B5A2B; /* marrón */
+    z-index: 0; 
+    border-radius: 0 0 20px 0; /* esquinas redondeadas */
+}
     .rama-izq, .rama-der, .rama-ing-izq, .rama-ing-der { stroke: #FFD700 !important; } /* ramas amarillas */
     
     .container, .container-ing { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; }
