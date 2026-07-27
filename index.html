@@ -3,42 +3,43 @@
 <head>
   <title>Lemon Bake</title>
   <style>
-  <style>
     html { scroll-behavior: smooth; }
     body { 
         margin: 0; 
-        background: #FDF1EC; /* volvimos al beige/rosita */
+        background: #FFF8E1; /* amarillo clarito como el logo */
         font-family: 'Arial'; 
         overflow-x: hidden; 
-        color: #3E2723;
+        color: #3E2723; /* texto marrón oscuro */
     }
     
     .navbar { 
-        background: white; 
+        background: #8B5A2B; /* marrón del logo */
         padding: 15px 40px; 
         margin: 20px; 
         border-radius: 20px; 
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2); 
         display: flex; 
         justify-content: space-between; 
         align-items: center; 
     }
     .navbar img.logo { max-width: 150px; }
-    .navbar .menu a { text-decoration: none; color: #555; margin: 0 10px; font-weight: 500; }
+    .navbar .menu a { text-decoration: none; color: #FFF3A0; margin: 0 10px; font-weight: 500; } /* amarillo */
+    .navbar .menu a:hover { color: white; }
     
     .btn-instagram { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4); padding: 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; }
     .btn-instagram svg { width: 24px; height: 24px; fill: white; }
     
     .hero { display: flex; align-items: center; justify-content: space-around; padding: 60px 40px; flex-wrap: wrap; min-height: 80vh; }
     .hero-text { text-align: left; max-width: 500px; }
-    .hero-text h1 { font-size: 48px; color: #A0522D; margin: 0; line-height: 1.2; }
-    .hero-text .descripcion { font-size: 16px; color: #6D4C41; margin: 20px 0; line-height: 1.6; }
-    .btn-whatsapp { background: #25D366; color: white; padding: 16px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; display: inline-flex; align-items: center; gap: 12px; }
-    .hero-img img { width: 400px; max-width: 90%; border-radius: 20px; }
+    .hero-text h1 { font-size: 48px; color: #5D4037; margin: 0; line-height: 1.2; } /* marrón oscuro */
+    .hero-text .descripcion { font-size: 16px; color: #3E2723; margin: 20px 0; line-height: 1.6; }
+    .btn-whatsapp { background: #FFD700; color: #3E2723; padding: 16px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; display: inline-flex; align-items: center; gap: 12px; } /* amarillo botón */
+    .btn-whatsapp:hover { background: #FFC107; }
+    .hero-img img { width: 400px; max-width: 90%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
     
     .section-quienes, .section-ingredientes { 
-        background: #FDF1EC; 
-        padding: 60px 40px; /* bajé de 100px a 60px para que no sea tan larga */
+        background: #FFF8E1; 
+        padding: 60px 40px; /* bajé el padding */
         position: relative; 
         overflow: hidden; 
     }
@@ -49,8 +50,8 @@
         right: 0; 
         width: 60px; 
         height: 100%; 
-        max-height: 500px; /* <-- esto evita que se haga gigante */
-        background: #E8B4C3; 
+        max-height: 500px; /* para que no sea gigante */
+        background: #8B5A2B; /* ahora marrón */
         z-index: 0; 
     }
     .barra-rosa-izq { 
@@ -59,15 +60,12 @@
         left: 0; 
         width: 60px; 
         height: 100%; 
-        max-height: 500px; /* <-- esto también */
-        background: #E8B4C3; 
+        max-height: 500px; 
+        background: #8B5A2B; /* ahora marrón */
         z-index: 0; 
     }
     
-    .rama-izq { position: absolute; top: 100px; left: 20px; width: 90px; opacity: 0.5; z-index: 0; }
-    .rama-der { position: absolute; bottom: 80px; right: 80px; width: 90px; opacity: 0.5; transform: rotate(180deg); z-index: 0; }
-    .rama-ing-izq { position: absolute; bottom: 120px; left: 30px; width: 90px; opacity: 0.5; z-index: 0; transform: rotate(90deg); }
-    .rama-ing-der { position: absolute; top: 100px; right: 100px; width: 90px; opacity: 0.5; z-index: 0; transform: rotate(-90deg); }
+    .rama-izq, .rama-der, .rama-ing-izq, .rama-ing-der { stroke: #FFD700 !important; } /* ramas amarillas */
     
     .container, .container-ing { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; }
     .quienes-img, .ingredientes-img { opacity: 0; transition: all 2s ease-out; width: 400px; max-width: 90%; }
@@ -80,33 +78,35 @@
     .ingredientes-text { transform: translateX(-120px); }
     .quienes-text.show, .ingredientes-text.show { opacity: 1; transform: translateX(0); }
     
-    h2 { color: #8B2F48; font-size: 40px; font-weight: bold; letter-spacing: 4px; margin: 0 0 30px 0; text-align: center; width: 100%; }
-    .textos { color: #8B2F48; font-size: 17px; line-height: 1.9; text-align: center; width: 100%; }
+    h2 { color: #5D4037; font-size: 40px; font-weight: bold; letter-spacing: 4px; margin: 0 0 30px 0; text-align: center; width: 100%; }
+    .textos { color: #3E2723; font-size: 17px; line-height: 1.9; text-align: center; width: 100%; }
     .textos p { margin: 0 0 20px 0; }
-    .textos b { color: #B76E79; }
+    .textos b { color: #8B5A2B; }
     
-    .footer { background: #1A1A1A; color: white; padding: 60px 40px 30px; text-align: center; }
+    .footer { background: #3E2723; color: #FFF3A0; padding: 60px 40px 30px; text-align: center; } /* marrón muy oscuro */
     .footer-links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; text-align: left; max-width: 300px; margin: 0 auto 40px; }
-    .footer-links a { color: #CCCCCC; text-decoration: none; font-size: 15px; transition: color 0.3s; }
-    .footer-links a:hover { color: #E8B4C3; }
-    .footer-rrss h3 { font-size: 18px; letter-spacing: 2px; margin-bottom: 15px; }
-    .footer-rrss p { color: #AAAAAA; font-size: 14px; max-width: 400px; margin: 0 auto 25px; line-height: 1.6; }
+    .footer-links a { color: #FFF3A0; text-decoration: none; font-size: 15px; transition: color 0.3s; }
+    .footer-links a:hover { color: #FFD700; }
+    .footer-rrss h3 { font-size: 18px; letter-spacing: 2px; margin-bottom: 15px; color: #FFD700; }
+    .footer-rrss p { color: #FFF3A0; font-size: 14px; max-width: 400px; margin: 0 auto 25px; line-height: 1.6; }
     .social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
-    .social-icons a { width: 40px; height: 40px; border: 1px solid #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; }
-    .social-icons a:hover { background: #E8B4C3; border-color: #E8B4C3; }
+    .social-icons a { width: 40px; height: 40px; border: 1px solid #8B5A2B; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #FFD700; text-decoration: none; transition: all 0.3s; }
+    .social-icons a:hover { background: #FFD700; color: #3E2723; border-color: #FFD700; }
     .social-icons svg { width: 18px; height: 18px; fill: currentColor; }
     .footer-logo { margin: 40px 0; }
     .footer-logo img { max-width: 200px; }
-    .footer-contacto { color: #CCCCCC; font-size: 15px; margin: 20px 0; }
+    .footer-contacto { color: #FFF3A0; font-size: 15px; margin: 20px 0; }
     .footer-contacto div { margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .footer-contacto svg { width: 18px; height: 18px; fill: #E8B4C3; }
-    .footer-copy { color: #777; font-size: 13px; margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
+    .footer-contacto svg { width: 18px; height: 18px; fill: #FFD700; }
+    .footer-copy { color: #A1887F; font-size: 13px; margin-top: 30px; border-top: 1px solid #5D4037; padding-top: 20px; }
     
     @media (max-width: 768px) { .rama-izq, .rama-der, .rama-ing-izq, .rama-ing-der { display: none; } .container, .container-ing { flex-direction: column; } h2 { font-size: 32px; } }
-</style>
+  </style>
+</head>
+<body>
 
   <div class="navbar">
-    <img src="logo 1.jpeg" alt="Lemon Bake Logo" class="logo"> <!-- SIN ESPACIOS -->
+    <img src="logo 1.jpeg" alt="Lemon Bake Logo" class="logo">
     <div class="menu">
       <a href="#">Inicio</a> | 
       <a href="#">Menú</a> | 
@@ -125,7 +125,7 @@
       <a href="https://wa.me/18096248595" class="btn-whatsapp">PIDE TU PRESUPUESTO</a>
     </div>
     <div class="hero-img">
-      <img src="COLORES.jpeg" alt="Cupcakes"> <!-- SIN ESPACIOS -->
+      <img src="COLORES.jpeg" alt="Cupcakes">
     </div>
   </div>
 
@@ -134,12 +134,12 @@
     <svg class="rama-izq" viewBox="0 0 100 200"><path d="M50 0 Q40 30 50 60 Q60 90 50 120 Q40 150 50 200" stroke="#E8B4C3" stroke-width="2" fill="none"/></svg>
     <svg class="rama-der" viewBox="0 0 100 200"><path d="M50 0 Q40 30 50 60 Q60 90 50 120 Q40 150 50 200" stroke="#E8B4C3" stroke-width="2" fill="none"/></svg>
     <div class="container">
-      <div class="quienes-img"><img src="pastelero1.jpg" alt="Tartas artesanales"></div> <!-- SIN ESPACIOS -->
+      <div class="quienes-img"><img src="pastelero1.jpg" alt="Tartas artesanales"></div>
       <div class="quienes-text">
         <h2>QUIÉNES SOMOS</h2>
         <div class="textos">
           <p>En <b>Lemon Bake</b> convertimos tus celebraciones en dulces. Somos una panadería artesanal apasionada por crear postres únicos con ingredientes naturales y mucho cariño.</p>
-          <p>Cada tarta, cada cupcake y cada mesa dulce está hecha a mano pensando en ti. Porque sabemos que los mejores momentos de la vida se celebran con sabor a casa <span style="color: #B76E79;">♥</span></p>
+          <p>Cada tarta, cada cupcake y cada mesa dulce está hecha a mano pensando en ti. Porque sabemos que los mejores momentos de la vida se celebran con sabor a casa <span style="color: #8B5A2B;">♥</span></p>
         </div>
       </div>
     </div>
@@ -157,7 +157,7 @@
           <p>Seleccionamos harinas premium, mantequilla de calidad, chocolate real y frutas frescas de temporada. Nada de conservantes.</p>
         </div>
       </div>
-      <div class="ingredientes-img"><img src="pastelero1.jpg" alt="Ingredientes naturales"></div> <!-- SIN ESPACIOS -->
+      <div class="ingredientes-img"><img src="pastelero1.jpg" alt="Ingredientes naturales"></div>
     </div>
   </div>
 
@@ -178,11 +178,11 @@
       </div>
     </div>
     <div class="footer-logo">
-      <img src="logo 1.jpeg" alt="Lemon Bake Logo"> <!-- SIN ESPACIOS -->
+      <img src="logo 1.jpeg" alt="Lemon Bake Logo">
     </div>
     <div class="footer-contacto">
       <div><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>809 624 8595</div>
-      <div><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a "Lemonbakerd@gmail.com" </a>/</div>
+      <div><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:lemonbakerd@gmail.com">lemonbakerd@gmail.com</a></div>
     </div>
     <div class="footer-copy">©2026. @LemonBake. Todos los derechos reservados.</div>
   </footer>
@@ -197,7 +197,7 @@
       const section2 = document.getElementById('ingredientes');
       if(section2.getBoundingClientRect().top < window.innerHeight / 1.3) {
         document.querySelector('.ingredientes-text').classList.add('show');
-        document.querySelector('.ingredientes-img').classList.add('show');
+        document.querySelector('.ingredientes-img').classSelector('.ingredientes-img').classList.add('show');
       }
     });
   </script>
