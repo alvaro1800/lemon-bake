@@ -3,16 +3,16 @@
 <head>
   <title>Lemon Bake</title>
   <style>
-    <style>
-    html { scroll-behavior: smooth; }
     body { 
-        margin: 0; 
-        background: linear-gradient(180deg, #FFF8E1 0%, #8B5A2B 100%); 
-        background-attachment: fixed;
-        font-family: 'Arial'; 
-        overflow-x: hidden; 
-        color: #3E2723;
-    }
+    background: linear-gradient(180deg, #FFF8E1 0%, #8B5A2B 100%); 
+    /* quité el background-attachment: fixed */
+    ...
+}
+.section-quienes, .section-ingredientes { 
+    background: transparent; /* quité el fondo para que se vea el degradado del body */
+    padding: 60px 40px; /* bajé el padding de 100px a 60px */
+}
+.barra-rosa, .barra-rosa-izq { height: 100%; max-height: 600px; } /* le puse tope */
     
     .navbar { 
         background: #8B5A2B; 
