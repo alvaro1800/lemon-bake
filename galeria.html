@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Galería - Lemon Bake</title>
+  <style>
+    body { margin: 0; background: #FDF1EC; font-family: 'Arial'; overflow-x: hidden; }
+    .navbar { background: white; padding: 15px 40px; margin: 20px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+    .navbar img.logo { max-width: 150px; }
+    .navbar .menu a { text-decoration: none; color: #555; margin: 0 10px; font-weight: 500; }
+    
+    /* NUEVO: ANIMACION TITULO */
+    h2 { color: #8B2F48; font-size: 40px; font-weight: bold; letter-spacing: 4px; text-align: center; padding: 60px 20px 20px; opacity: 0; animation: fadeDown 1s ease forwards; }
+
+    .galeria-grid { max-width: 1200px; margin: 0 auto; padding: 0 40px 100px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    
+    /* NUEVO: ANIMACION FOTOS */
+    .galeria-item { 
+      position: relative; border-radius: 20px; overflow: hidden; 
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1); cursor: pointer;
+      opacity: 0; transform: translateY(50px); 
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .galeria-item:nth-child(1) { animation-delay: 0.2s; }
+    .galeria-item:nth-child(2) { animation-delay: 0.3s; }
+    .galeria-item:nth-child(3) { animation-delay: 0.4s; }
+    .galeria-item:nth-child(4) { animation-delay: 0.5s; }
+    .galeria-item:nth-child(5) { animation-delay: 0.6s; }
+    .galeria-item:nth-child(6) { animation-delay: 0.7s; }
+    .galeria-item:nth-child(7) { animation-delay: 0.8s; }
+    .galeria-item:nth-child(8) { animation-delay: 0.9s; }
+
+    .galeria-item img { width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s ease; }
+    .galeria-item:hover img { transform: scale(1.1); }
+    .galeria-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(139,47,72,0.8), transparent); opacity: 0; transition: opacity 0.4s ease; display: flex; align-items: flex-end; padding: 20px; color: white; font-weight: bold; font-size: 18px; }
+    .galeria-item:hover .galeria-overlay { opacity: 1; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 20px; box-shadow: 0 0 30px rgba(255,255,255,0.2); }
+    .lightbox:target { display: flex; }
+    .cerrar { position: absolute; top: 30px; right: 50px; color: white; font-size: 50px; text-decoration: none; font-weight: bold; }
+    
+    /* NUEVO: KEYFRAMES ANIMACION */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @media (max-width: 768px) { .galeria-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <img src="logo 1.jpeg" alt="Lemon Bake Logo" class="logo">
+    <div class="menu">
+      <a href="index.html">Inicio</a> | 
+      <a href="galeria.html">Galería</a> | 
+      <a href="index.html#contacto">Contacto</a>
+    </div>
+  </div>
+
+  <h2>NUESTRA GALERÍA</h2>
+  <div class="galeria-grid">
+    <a href="#img1" class="galeria-item"><img src="fiesta.jpeg" alt="Tarta 1"><div class="galeria-overlay">Tartas Personalizadas</div></a>
+    <a href="#img2" class="galeria-item"><img src="fiesta 2.jpeg" alt="Tarta 2"><div class="galeria-overlay">Cupcakes Gourmet</div></a>
+    <a href="#img3" class="galeria-item"><img src="fiesta3.jpeg" alt="Tarta 3"><div class="galeria-overlay">Mesas Dulces</div></a>
+    <a href="#img4" class="galeria-item"><img src="fiesta4.jpeg" alt="Tarta 4"><div class="galeria-overlay">Postres Finos</div></a>
+    <a href="#img5" class="galeria-item"><img src="fiesta 5.jpeg" alt="Tarta 5"><div class="galeria-overlay">Bodas</div></a>
+    <a href="#img6" class="galeria-item"><img src="fiesta6.jpeg" alt="Tarta 6"><div class="galeria-overlay">Cumpleaños</div></a>
+    <a href="#img7" class="galeria-item"><img src="fiesta 7.jpeg" alt="Tarta 7"><div class="galeria-overlay">Eventos</div></a>
+    <a href="#img8" class="galeria-item"><img src="fiesta8.jpeg" alt="Tarta 8"><div class="galeria-overlay">Artesanal</div></a>
+  </div>
+
+  <div id="img1" class="lightbox"><a href="#" class="cerrar">&times;</a><img src="fiesta.jpeg"></div>
+  <div id="img2" class="lightbox"><a href="#" class="cerrar">&times;</a><img src="fiesta 2.jpeg"></div>
+  <div id="img3" class="lightbox"><a href="#" class="cerrar">&times;</a><img src="fiesta3.jpeg"></div>
+  <div id="img4" class="lightbox"><a href="#" class="cerrar">&times;</a><img src="fiesta4.jpeg"></div>
+  <div id="img5" class="lightbox"><a href="#" class="cerrar">&times;</a><img src="fiesta 5.jpeg"></div>
+  <div id="img6" class="lightbox"><a href="#" class="cerrar">&times;</a><img src="fiesta6.jpeg"></div>
+  <div id="img7" class="lightbox"><a href="#" class="cerrar">&times;</a><img src="fiesta 7.jpeg"></div>
+  <div id="img8" class="lightbox"><a href="#" class="cerrar">&times;</a><img src="fiesta8.jpeg"></div>
+
+</body>
+</html>
