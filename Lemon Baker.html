@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lemon Bake</title>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #FDF1EC; font-family: 'Arial'; overflow-x: hidden; }
+    .navbar { background: white; padding: 15px 40px; margin: 20px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+    .navbar img.logo { max-width: 150px; }
+    .navbar .menu a { text-decoration: none; color: #555; margin: 0 10px; font-weight: 500; }
+    .btn-instagram { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4); padding: 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; }
+    .btn-instagram svg { width: 24px; height: 24px; fill: white; }
+    .hero { display: flex; align-items: center; justify-content: space-around; padding: 60px 40px; flex-wrap: wrap; min-height: 80vh; }
+    .hero-text { text-align: left; max-width: 500px; }
+    .hero-text h1 { font-size: 48px; color: #A0522D; margin: 0; line-height: 1.2; }
+    .hero-text .descripcion { font-size: 16px; color: #6D4C41; margin: 20px 0; line-height: 1.6; }
+    .btn-whatsapp { background: #25D366; color: white; padding: 16px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 18px; display: inline-flex; align-items: center; gap: 12px; }
+    .hero-img img { width: 400px; max-width: 90%; border-radius: 20px; }
+    .section-quienes, .section-ingredientes { background: #FDF1EC; padding: 100px 40px; position: relative; overflow: hidden; }
+    .barra-rosa { position: absolute; top: 0; right: 0; width: 60px; height: 100%; background: #E8B4C3; z-index: 0; }
+    .barra-rosa-izq { position: absolute; top: 0; left: 0; width: 60px; height: 100%; background: #E8B4C3; z-index: 0; }
+    .rama-izq { position: absolute; top: 100px; left: 20px; width: 90px; opacity: 0.5; z-index: 0; }
+    .rama-der { position: absolute; bottom: 80px; right: 80px; width: 90px; opacity: 0.5; transform: rotate(180deg); z-index: 0; }
+    .rama-ing-izq { position: absolute; bottom: 120px; left: 30px; width: 90px; opacity: 0.5; z-index: 0; transform: rotate(90deg); }
+    .rama-ing-der { position: absolute; top: 100px; right: 100px; width: 90px; opacity: 0.5; z-index: 0; transform: rotate(-90deg); }
+    .container, .container-ing { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; }
+    .quienes-img, .ingredientes-img { opacity: 0; transition: all 2s ease-out; width: 400px; max-width: 90%; }
+    .quienes-img { transform: translateX(-120px); }
+    .ingredientes-img { transform: translateX(120px); }
+    .quienes-img.show, .ingredientes-img.show { opacity: 1; transform: translateX(0); }
+    .quienes-img img, .ingredientes-img img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: cover; }
+    .quienes-text, .ingredientes-text { opacity: 0; transition: all 2s ease-out 0.5s; width: 500px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .quienes-text { transform: translateX(120px); }
+    .ingredientes-text { transform: translateX(-120px); }
+    .quienes-text.show, .ingredientes-text.show { opacity: 1; transform: translateX(0); }
+    h2 { color: #8B2F48; font-size: 40px; font-weight: bold; letter-spacing: 4px; margin: 0 0 30px 0; text-align: center; width: 100%; }
+    .textos { color: #8B2F48; font-size: 17px; line-height: 1.9; text-align: center; width: 100%; }
+    .textos p { margin: 0 0 20px 0; }
+    .textos b { color: #B76E79; }
+    .footer { background: #1A1A1A; color: white; padding: 60px 40px 30px; text-align: center; }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; text-align: left; max-width: 300px; margin: 0 auto 40px; }
+    .footer-links a { color: #CCCCCC; text-decoration: none; font-size: 15px; transition: color 0.3s; }
+    .footer-links a:hover { color: #E8B4C3; }
+    .footer-rrss h3 { font-size: 18px; letter-spacing: 2px; margin-bottom: 15px; }
+    .footer-rrss p { color: #AAAAAA; font-size: 14px; max-width: 400px; margin: 0 auto 25px; line-height: 1.6; }
+    .social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+    .social-icons a { width: 40px; height: 40px; border: 1px solid #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; }
+    .social-icons a:hover { background: #E8B4C3; border-color: #E8B4C3; }
+    .social-icons svg { width: 18px; height: 18px; fill: currentColor; }
+    .footer-logo { margin: 40px 0; }
+    .footer-logo img { max-width: 200px; }
+    .footer-contacto { color: #CCCCCC; font-size: 15px; margin: 20px 0; }
+    .footer-contacto div { margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .footer-contacto svg { width: 18px; height: 18px; fill: #E8B4C3; }
+    .footer-copy { color: #777; font-size: 13px; margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
+    @media (max-width: 768px) { .rama-izq, .rama-der, .rama-ing-izq, .rama-ing-der { display: none; } .container, .container-ing { flex-direction: column; } h2 { font-size: 32px; } }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <img src="logo 1.jpeg" alt="Lemon Bake Logo" class="logo"> <!-- SIN ESPACIOS -->
+    <div class="menu">
+      <a href="#">Inicio</a> | 
+      <a href="#">Menú</a> | 
+      <a href="#">Galería</a> | 
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="https://www.instagram.com/lemonbakerd" class="btn-instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <h1>CREAMOS<br>MOMENTOS<br>INOLVIDABLES</h1>
+      <p class="descripcion">Tartas personalizadas, mesas dulces y postres artesanales para bodas, cumpleaños y eventos. Cada detalle hecho con ingredientes naturales y mucho amor 🍋</p>
+      <a href="https://wa.me/18096248595" class="btn-whatsapp">PIDE TU PRESUPUESTO</a>
+    </div>
+    <div class="hero-img">
+      <img src="COLORES.jpeg" alt="Cupcakes"> <!-- SIN ESPACIOS -->
+    </div>
+  </div>
+
+  <div class="section-quienes" id="quienes-somos">
+    <div class="barra-rosa"></div>
+    <svg class="rama-izq" viewBox="0 0 100 200"><path d="M50 0 Q40 30 50 60 Q60 90 50 120 Q40 150 50 200" stroke="#E8B4C3" stroke-width="2" fill="none"/></svg>
+    <svg class="rama-der" viewBox="0 0 100 200"><path d="M50 0 Q40 30 50 60 Q60 90 50 120 Q40 150 50 200" stroke="#E8B4C3" stroke-width="2" fill="none"/></svg>
+    <div class="container">
+      <div class="quienes-img"><img src="lemonbake/pastelero1.jpg" alt="Tartas artesanales"></div> <!-- SIN ESPACIOS -->
+      <div class="quienes-text">
+        <h2>QUIÉNES SOMOS</h2>
+        <div class="textos">
+          <p>En <b>Lemon Bake</b> convertimos tus celebraciones en dulces. Somos una panadería artesanal apasionada por crear postres únicos con ingredientes naturales y mucho cariño.</p>
+          <p>Cada tarta, cada cupcake y cada mesa dulce está hecha a mano pensando en ti. Porque sabemos que los mejores momentos de la vida se celebran con sabor a casa <span style="color: #B76E79;">♥</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-ingredientes" id="ingredientes">
+    <div class="barra-rosa-izq"></div>
+    <svg class="rama-ing-izq" viewBox="0 0 100 200"><path d="M50 0 Q40 30 50 60 Q60 90 50 120 Q40 150 50 200" stroke="#E8B4C3" stroke-width="2" fill="none"/></svg>
+    <svg class="rama-ing-der" viewBox="0 0 100 200"><path d="M50 0 Q40 30 50 60 Q60 90 50 120 Q40 150 50 200" stroke="#E8B4C3" stroke-width="2" fill="none"/></svg>
+    <div class="container-ing">
+      <div class="ingredientes-text">
+        <h2>SOLO LO MEJOR</h2>
+        <div class="textos">
+          <p>Usamos los <b>mejores productos 100% naturales</b> para que cada bocado sea una experiencia única.</p>
+          <p>Seleccionamos harinas premium, mantequilla de calidad, chocolate real y frutas frescas de temporada. Nada de conservantes.</p>
+        </div>
+      </div>
+      <div class="ingredientes-img"><img src="lemonbake/pastelero1.jpg" alt="Ingredientes naturales"></div> <!-- SIN ESPACIOS -->
+    </div>
+  </div>
+
+  <footer class="footer" id="contacto">
+    <div class="footer-links">
+      <a href="#contacto">Contacto</a>
+      <a href="#">Aviso Legal</a>
+      <a href="#">Política de cookies</a>
+      <a href="#">Protección de datos</a>
+    </div>
+    <div class="footer-rrss">
+      <h3>RRSS</h3>
+      <p>No pierdas de vista nuestras Redes sociales para estar a la última!</p>
+      <div class="social-icons">
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+        <a href="https://www.instagram.com/lemonbakerd"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-logo">
+      <img src="logo 1.jpeg" alt="Lemon Bake Logo"> <!-- SIN ESPACIOS -->
+    </div>
+    <div class="footer-contacto">
+      <div><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>809 624 8595</div>
+      <div><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>clientes@lemonbake.com</div>
+    </div>
+    <div class="footer-copy">©2026. @LemonBake. Todos los derechos reservados.</div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const section1 = document.getElementById('quienes-somos');
+      if(section1.getBoundingClientRect().top < window.innerHeight / 1.3) {
+        document.querySelector('.quienes-img').classList.add('show');
+        document.querySelector('.quienes-text').classList.add('show');
+      }
+      const section2 = document.getElementById('ingredientes');
+      if(section2.getBoundingClientRect().top < window.innerHeight / 1.3) {
+        document.querySelector('.ingredientes-text').classList.add('show');
+        document.querySelector('.ingredientes-img').classList.add('show');
+      }
+    });
+  </script>
+
+</body>
+</html>
